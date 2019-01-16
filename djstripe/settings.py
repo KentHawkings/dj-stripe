@@ -18,7 +18,6 @@ from six import text_type
 
 from .checks import validate_stripe_api_version
 
-
 DEFAULT_STRIPE_API_VERSION = "2018-05-21"
 
 
@@ -79,7 +78,6 @@ DJSTRIPE_WEBHOOK_URL = getattr(settings, "DJSTRIPE_WEBHOOK_URL", r"^webhook/$")
 # onto a task queue (such as celery) for asynchronous processing.
 WEBHOOK_EVENT_CALLBACK = get_callback_function("DJSTRIPE_WEBHOOK_EVENT_CALLBACK")
 
-
 TEST_API_KEY = getattr(settings, "STRIPE_TEST_SECRET_KEY", "")
 LIVE_API_KEY = getattr(settings, "STRIPE_LIVE_SECRET_KEY", "")
 
@@ -99,7 +97,6 @@ elif STRIPE_LIVE_MODE:
     STRIPE_PUBLIC_KEY = getattr(settings, "STRIPE_LIVE_PUBLIC_KEY", "")
 else:
     STRIPE_PUBLIC_KEY = getattr(settings, "STRIPE_TEST_PUBLIC_KEY", "")
-
 
 # Set STRIPE_API_HOST if you want to use a different Stripe API server
 # Example: https://github.com/stripe/stripe-mock
@@ -123,7 +120,6 @@ def get_default_api_key(livemode):
 
 
 SUBSCRIPTION_REDIRECT = getattr(settings, "DJSTRIPE_SUBSCRIPTION_REDIRECT", "djstripe:subscribe")
-
 
 ZERO_DECIMAL_CURRENCIES = set([
     "bif", "clp", "djf", "gnf", "jpy", "kmf", "krw", "mga", "pyg", "rwf",
@@ -157,10 +153,6 @@ def get_subscriber_model():
     except LookupError:
         raise ImproperlyConfigured("DJSTRIPE_SUBSCRIBER_MODEL refers to model '{model}' "
                                    "that has not been installed.".format(model=model_name))
-
-    if (("email" not in [field_.name for field_ in subscriber_model._meta.get_fields()]) and
-            not hasattr(subscriber_model, 'email')):
-        raise ImproperlyConfigured("DJSTRIPE_SUBSCRIBER_MODEL must have an email attribute.")
 
     if model_name != settings.AUTH_USER_MODEL:
         # Custom user model detected. Make sure the callback is configured.

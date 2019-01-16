@@ -24,7 +24,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import IntegrityError, models, transaction
 from django.db.models.deletion import SET_NULL
-from django.db.models.fields import BooleanField, CharField, DateTimeField, UUIDField
+from django.db.models.fields import BooleanField, CharField, DateTimeField, UUIDField, EmailField
 from django.db.models.fields.related import ForeignKey, OneToOneField
 from django.utils import dateformat, six, timezone
 from django.utils.encoding import python_2_unicode_compatible, smart_text
@@ -827,8 +827,7 @@ class Customer(StripeObject):
         null=True, editable=False, stripe_name="discount.end", stripe_required=False,
         help_text="If a coupon is present and has a limited duration, the date that the discount will end."
     )
-    # </discount>
-    email = StripeTextField(null=True)
+    email = EmailField(null=True, blank=True)
     shipping = StripeJSONField(
         blank=True, stripe_required=False, help_text="Shipping information associated with the customer."
     )
