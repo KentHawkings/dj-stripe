@@ -1031,7 +1031,7 @@ class Migration(migrations.Migration):
 		migrations.AlterField(
 			model_name="customer",
 			name="email",
-			field=models.TextField(blank=True, default="", max_length=5000),
+			field=models.TextField(blank=True, default="", max_length=5000, null=True)
 		),
 		migrations.AlterField(
 			model_name="event",
