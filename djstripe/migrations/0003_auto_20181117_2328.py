@@ -7,7 +7,6 @@ import djstripe.fields
 
 
 class Migration(migrations.Migration):
-
 	dependencies = [("djstripe", "0002_auto_20180627_1121")]
 
 	operations = [
@@ -1026,6 +1025,7 @@ class Migration(migrations.Migration):
 				default="",
 				help_text="The currency the customer can be charged in for recurring billing purposes",
 				max_length=3,
+				null=True
 			),
 		),
 		migrations.AlterField(
