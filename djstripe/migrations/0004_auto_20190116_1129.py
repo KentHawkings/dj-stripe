@@ -12,13 +12,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='customer',
-            name='currency',
-            field=djstripe.fields.StripeCurrencyCodeField(default='', help_text='The currency the customer can be charged in for recurring billing purposes', max_length=3),
-        ),
-        migrations.AlterField(
             model_name='plan',
             name='amount',
             field=djstripe.fields.StripeDecimalCurrencyAmountField(decimal_places=2, help_text='Amount to be charged on the interval specified.', max_digits=8, null=True),
-        ),
+        )
     ]
