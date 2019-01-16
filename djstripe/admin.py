@@ -219,7 +219,7 @@ class CouponAdmin(StripeObjectAdmin):
 class CustomerAdmin(StripeObjectAdmin):
     raw_id_fields = ("subscriber", "default_source", "coupon")
     list_display = (
-        "subscriber", "email", "currency", "default_source", "coupon",
+        "subscriber", "currency", "default_source", "coupon",
         "account_balance", "business_vat_id",
     )
     list_filter = (CustomerHasSourceListFilter, CustomerSubscriptionStatusListFilter)
